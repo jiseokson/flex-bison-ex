@@ -6,7 +6,7 @@ int words = 0;
 int chars = 0;
 %}
 
-%% 
+%%
 \n              {++chars; ++lines;}
 [^ \t\n\r\f\v]+ {++words; chars += strlen(yytext);}
 .               {++chars;}
