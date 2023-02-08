@@ -15,5 +15,6 @@
 [0-9]+  {yylval = atoi(yytext); return NUMBER;}
 \n      {return EOL;}
 [ \t]   {}
+"//".*  {}
 .       {printf("type: none, value: %s\n", yytext);}
 %%
