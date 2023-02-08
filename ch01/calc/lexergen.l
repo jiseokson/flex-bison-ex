@@ -10,6 +10,8 @@
 "*"     {return MUL;}
 "/"     {return DIV;}
 "|"     {return ABS;}
+"("     {return OPAREN;}
+")"     {return CPAREN;}
 [0-9]+  {yylval = atoi(yytext); return NUMBER;}
 \n      {return EOL;}
 [ \t]   {}

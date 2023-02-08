@@ -4,25 +4,32 @@
 
 %token NUMBER
 %token ADD SUB MUL DIV ABS
+%token OPAREN CPAREN
 %token EOL
 
 %%
 calclist:
-    | calclist expression EOL {printf("%d\n", $2);}
+    | calclist expression EOL   {printf("%d\n", $2);}
     ;
 
-expression: factor
+expression:
+    factor
     | expression ADD factor {$$ = $1 + $3;}
     | expression SUB factor {$$ = $1 - $3;}
     ;
 
-factor: term
-    | factor MUL term {$$ = $1 * $3;}
-    | factor DIV term {$$ = $1 / $3;}
+factor:
+    term
+    | factor MUL term   {$$ = $1 * $3;}
+    | factor DIV term   {$$ = $1 / $3;}
     ;
 
-term: NUMBER
-    | ABS term {$$ = $2 >= 0 ? $2 : -$2;}
+term:
+    NUMBER
+    | ABS term ABS              {$$ = $2 >= 0 ? $2 : -$2;}
+    | ADD term                  {$$ = $2;}
+    | SUB term                  {$$ = -$2;}
+    | OPAREN expression CPAREN  {$$ = $2;}
     ;
 %%
 
