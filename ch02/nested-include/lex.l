@@ -26,12 +26,10 @@ int pop_file(void);
 
 <IFILE>[^>]+            {
                             {
-                                // read all characters after file name
                                 int c;
-                                while (c = input() && c != '\n');
+                                while ((c = input()) && c != '\n');
                             }
                             ++yylineno;
-                            printf("file name: \'%s\'\n", yytext); // for debug
                             if (!new_file(yytext))
                                 yyterminate();
                             BEGIN INITIAL;
