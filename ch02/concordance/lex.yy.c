@@ -1998,11 +1998,11 @@ void print_refs(void)
 {
     qsort(symbol_table, NHASH, sizeof(symbol_t), symbol_compare);
     for (
-    symbol_t *symbol = symbol_table;
-    symbol->name && symbol < symbol_table + NHASH;
-    ++symbol) {
+    symbol_t *symbol_p = symbol_table;
+    symbol_p->name && symbol_p < symbol_table + NHASH;
+    ++symbol_p) {
         char *prev_file_name = NULL;
-        ref_t *cur = symbol->reflist;
+        ref_t *cur = symbol_p->reflist;
         ref_t *prev = NULL;
         ref_t *next;
 
@@ -2013,7 +2013,7 @@ void print_refs(void)
             cur = next;
         }
 
-        printf("%s\n", symbol->name);
+        printf("%s\n", symbol_p->name);
         for (ref_t *i = prev; i; i = i->next) {
             if (i->file_name == prev_file_name) {
                 printf(" %d", i->lineno);
