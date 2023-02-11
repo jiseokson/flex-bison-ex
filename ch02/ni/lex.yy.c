@@ -363,11 +363,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[25] =
+static const flex_int16_t yy_accept[29] =
     {   0,
-        0,    0,    0,    0,    9,    6,    7,    4,    5,    4,
-        2,    3,    0,    0,    2,    0,    0,    0,    0,    0,
-        0,    0,    1,    0
+        0,    0,    0,    0,    9,    6,    7,    4,    4,    5,
+        4,    2,    2,    3,    0,    0,    0,    0,    2,    0,
+        0,    0,    0,    0,    0,    0,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -408,36 +408,38 @@ static const YY_CHAR yy_meta[14] =
         1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[29] =
+static const flex_int16_t yy_base[33] =
     {   0,
-       26,    0,   22,   21,   26,   30,   30,   30,   30,    3,
-        0,   30,    0,   13,    0,   17,    5,    2,    2,    0,
-       12,    0,   30,   30,   17,   19,   21,    0
+       18,    0,    2,    6,   20,   35,   35,   35,   11,   35,
+       14,    0,    0,   35,    0,    0,    0,    7,    0,   11,
+        6,    1,    3,    1,   23,    0,   35,   35,   28,   30,
+       32,    0
     } ;
 
-static const flex_int16_t yy_def[29] =
+static const flex_int16_t yy_def[33] =
     {   0,
-       25,   26,   27,   27,   24,   24,   24,   24,   24,   24,
-       28,   24,   10,   24,   28,   24,   24,   24,   24,   24,
-       24,   21,   24,    0,   24,   24,   24,   24
+       29,   30,   31,   31,   28,   28,   28,   28,   28,   28,
+       28,   32,   32,   28,    9,   11,   11,   28,   32,   28,
+       28,   28,   28,   28,   28,   25,   28,    0,   28,   28,
+       28,   28
     } ;
 
-static const flex_int16_t yy_nxt[44] =
+static const flex_int16_t yy_nxt[49] =
     {   0,
-       15,   24,    9,   10,   13,   24,   24,   24,   21,   20,
-       24,   24,   14,   22,   19,   18,   23,    6,    6,    8,
-        8,   11,   11,   17,   16,   24,   12,   12,    7,    5,
-       24,   24,   24,   24,   24,   24,   24,   24,   24,   24,
-       24,   24,   24
+       19,    9,   10,   11,   13,   28,   28,   14,   13,   25,
+       24,   14,   15,   23,   16,   17,   22,   21,   20,   28,
+        7,   28,   28,   18,   26,   28,   28,   27,    6,    6,
+        8,    8,   12,   12,    5,   28,   28,   28,   28,   28,
+       28,   28,   28,   28,   28,   28,   28,   28
     } ;
 
-static const flex_int16_t yy_chk[44] =
+static const flex_int16_t yy_chk[49] =
     {   0,
-       28,    0,    2,    2,   10,    0,    0,    0,   20,   19,
-        0,    0,   10,   21,   18,   17,   21,   25,   25,   26,
-       26,   27,   27,   16,   14,    5,    4,    3,    1,   24,
-       24,   24,   24,   24,   24,   24,   24,   24,   24,   24,
-       24,   24,   24
+       32,    2,    2,    2,    3,    0,    0,    3,    4,   24,
+       23,    4,    9,   22,    9,   11,   21,   20,   18,    5,
+        1,    0,    0,   11,   25,    0,    0,   25,   29,   29,
+       30,   30,   31,   31,   28,   28,   28,   28,   28,   28,
+       28,   28,   28,   28,   28,   28,   28,   28
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -460,22 +462,17 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 
-struct buf_stack {
-    struct bufstack *prev;
-    YY_BUFFER_STATE buf_state;
-    int lineno;
-    char *file_name;
-    FILE *f;
-};
+typedef struct buffer_stack_t {
+    struct buffer_stack_t   *prev;
+    YY_BUFFER_STATE         buffer_state;
+    FILE                    *file;
+    char                    *file_name;
+    int                     lineno;
+} buffer_stack_t;
 
-struct buf_stack *cur_buf_stack;
-
-char *cur_file_name;
-
-int new_file(char *file_name);
-int pop_file(void);
-#line 478 "lex.yy.c"
-#line 479 "lex.yy.c"
+buffer_stack_t  *top;
+#line 475 "lex.yy.c"
+#line 476 "lex.yy.c"
 
 #define INITIAL 0
 #define IFILE 1
@@ -696,9 +693,9 @@ YY_DECL
 		}
 
 	{
-#line 24 "lex.l"
+#line 19 "lex.l"
 
-#line 702 "lex.yy.c"
+#line 699 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -726,13 +723,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 25 )
+				if ( yy_current_state >= 29 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 30 );
+		while ( yy_base[yy_current_state] != 35 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -758,66 +755,64 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 25 "lex.l"
+#line 20 "lex.l"
 { BEGIN IFILE; }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 27 "lex.l"
+#line 22 "lex.l"
 {
-                            {
-                                int c;
-                                while ((c = input()) && c != '\n');
-                            }
-                            ++yylineno;
-                            if (!new_file(yytext))
-                                yyterminate();
-                            BEGIN INITIAL;
-                        }
+                    {
+                        int c;
+                        while ((c = input()) && c != '\n');
+                    }
+                    if (!push_file(yytext))
+                        yyterminate();
+                    BEGIN INITIAL;
+                }
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 38 "lex.l"
+#line 32 "lex.l"
 {
-                            fprintf(stderr, "%4d: bad include line\n", yylineno);
-                            yyterminate();
-                        }
+                fprintf(stderr, "bad include at line %d\n", top->lineno);
+                yyterminate();
+            }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(IFILE):
-#line 43 "lex.l"
+#line 37 "lex.l"
 { if (!pop_file()) yyterminate(); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 45 "lex.l"
-{ fprintf(yyout, "%4d %s", yylineno, yytext); }
+#line 39 "lex.l"
+{ fprintf(yyout, "%8s: %3d: %s", top->file_name, top->lineno, yytext); } 
 	YY_BREAK
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 46 "lex.l"
-{ fprintf(yyout, "%4d %s", yylineno++, yytext); }
+#line 40 "lex.l"
+{ fprintf(yyout, "%8s: %3d: %s", top->file_name, top->lineno++, yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "lex.l"
+#line 41 "lex.l"
 { ECHO; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 48 "lex.l"
-{ ECHO; ++yylineno; }
+#line 42 "lex.l"
+{ ECHO; ++top->lineno;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "lex.l"
+#line 43 "lex.l"
 ECHO;
 	YY_BREAK
-#line 821 "lex.yy.c"
+#line 816 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1113,7 +1108,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 25 )
+			if ( yy_current_state >= 29 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1141,11 +1136,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 25 )
+		if ( yy_current_state >= 29 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 24);
+	yy_is_jam = (yy_current_state == 28);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1823,60 +1818,55 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 49 "lex.l"
+#line 43 "lex.l"
 
+
+int push_file(char *file_name);
+int pop_file(void);
 
 int main(int argc, char **argv)
 {
-    if (argc < 2) {
-        fprintf(stderr, "need filename\n");
+    if (argc != 2) {
+        fprintf(stderr, "Usage: nic file_name\n");
         return 1;
     }
-    if (new_file(argv[1]))
-        yylex();
+    if (!push_file(argv[1]))
+        return 1;
+    yylex();
+    return 0;
 }
 
-int new_file(char *file_name)
+int push_file(char *file_name)
 {
-    FILE *f = fopen(file_name, "r");
-    struct buf_stack *new_buf_stack = (struct buf_stack *)malloc(sizeof(struct buf_stack));
-
-    if (!f) {
-        perror(file_name);
-        return 0;
-    }
-    if (!new_buf_stack) {
+    buffer_stack_t *new_buffer_stack = (buffer_stack_t *)malloc(sizeof(buffer_stack_t));
+    if (!new_buffer_stack) {
         perror("malloc()");
         return 0;
     }
-
-    if (cur_buf_stack)
-        cur_buf_stack->lineno = yylineno;
-    new_buf_stack->prev = cur_buf_stack;
-    new_buf_stack->buf_state = yy_create_buffer(f, YY_BUF_SIZE);
-    new_buf_stack->f = f;
-    new_buf_stack->file_name = file_name;
-    cur_buf_stack = new_buf_stack;
-    yy_switch_to_buffer(cur_buf_stack->buf_state);
-    yylineno = 1;
-    cur_file_name = file_name;
+    FILE *file = fopen(file_name, "r");
+    if (!file) {
+        perror(file_name);
+        return 0;
+    }
+    new_buffer_stack->prev = top;
+    new_buffer_stack->buffer_state = yy_create_buffer(file, YY_BUF_SIZE);
+    new_buffer_stack->file = file;
+    new_buffer_stack->file_name = file_name;
+    new_buffer_stack->lineno = 1;
+    top = new_buffer_stack;
+    yy_switch_to_buffer(top->buffer_state);
     return 1;
 }
 
 int pop_file(void)
 {
-    struct buf_stack *prev_buf_stack = cur_buf_stack->prev;
-    if (!cur_buf_stack)
+    if (!top)
         return 0;
-    fclose(cur_buf_stack->f);
-    yy_delete_buffer(cur_buf_stack->buf_state);
-    free(cur_buf_stack);
-    if (!prev_buf_stack)
+    buffer_stack_t *temp = top;
+    top = top->prev;
+    free(temp);
+    if (top == NULL)
         return 0;
-    cur_buf_stack = prev_buf_stack;
-    yy_switch_to_buffer(cur_buf_stack->buf_state);
-    yylineno = cur_buf_stack->lineno;
-    cur_file_name = cur_buf_stack->file_name;
+    yy_switch_to_buffer(top->buffer_state);
     return 1;
 }
-
