@@ -9,26 +9,6 @@ int colno;
 %}
 
 %%
-a |
-an |
-and |
-are |
-as |
-at |
-be |
-but |
-for |
-in |
-is |
-it |
-of |
-on |
-or |
-that |
-the |
-this |
-to
-
 [a-zA-Z]+(\'[st])? { add_ref(yytext, yylineno, colno + 1, cur_file_name); colno += strlen(yytext);}
 . { ++colno; }
 \n { colno = 0; }

@@ -72,14 +72,12 @@ void print_refs(ref_t *ref_list)
 
 void print_symbols(void)
 {
-    for (symbol_t **symbol = symbol_table;
-    symbol < symbol_table + NHASH;
-    ++symbol) {
-        if (!symbol) continue;
-        while (*symbol) {
-            printf("%s\n", (*symbol)->name);
-            print_refs((*symbol)->ref_list);
-            *symbol = (*symbol)->next;
+    for (int i = 0; i < NHASH; ++i) {
+        symbol_t *symbol = symbol_table[i];
+        while (symbol) {
+            printf("<%s>\n", symbol->name);
+            print_refs(symbol->ref_list);
+            symbol = symbol->next;
         }
     }
 }
